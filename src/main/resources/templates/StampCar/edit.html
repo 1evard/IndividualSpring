@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title th:value="${'Редактирование марки товара '+stampCar.titlestampcar}"></title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div align="center">
+    <h1>Изменение марки машины</h1>
+    <form th:action="${'/employeeStampCar/edit/'+stampCar.id}" method="post" th:object="${stampCar}">
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Марка машины</label>
+            <div style="color: red" th:if="${#fields.hasErrors('titlestampcar')}" th:errors="*{titlestampcar}"></div>
+            <input th:field="*{titlestampcar}" type="text"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   name="titlestamp" placeholder="Введите марку машины">
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">Сохранить</button>
+    </form>
+</div>
+
+</body>
+</html>

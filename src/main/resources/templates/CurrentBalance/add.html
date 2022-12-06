@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Добавление количества</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div class="w-full max-w-xs">
+    <form th:action="${'/employCurrentBalance/add'}" method="post" th:object="${currentBalance}"
+          class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Количество</label>
+            <div style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></div>
+            <input th:field="*{quantity}"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="number" name="quantity" placeholder="Введите количество">
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">Добавить количество
+        </button>
+    </form>
+</div>
+</body>
+</html>

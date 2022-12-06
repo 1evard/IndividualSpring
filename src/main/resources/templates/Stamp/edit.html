@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title th:value="${'Редактирование марки товара '+stamp.titlestamp}"></title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div align="center">
+    <h1>Изменение марки товара</h1>
+    <form th:action="${'/employeeStamp/edit/'+stamp.id}" method="post" th:object="${stamp}">
+
+        <input th:field="*{titlestamp}" style="display: list-item" th:value="${stamp.titlestamp}"
+               type="text" name="titlestamp" placeholder="Введите марку товара">
+        <div th:if="*{#fields.hasErrors('titlestamp')}" th:errors="*{titlestamp}"></div><br>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Типы марки товара</label>
+            <div th:each="product : ${productTypes}">
+                <input th:name="${'productTypes[]'}" th:value="${product.id}" th:checked="${stamp.id!=null && #lists.contains(stamp.productTypes, product)}"
+                       class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       type="checkbox">
+                <label th:text="${product.name}"></label>
+            </div>
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">Сохранить</button>
+    </form>
+</div>
+
+</body>
+</html>

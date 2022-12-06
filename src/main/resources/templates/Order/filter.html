@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div align="center">
+    <h2>Поиск сотрудников</h2>
+    <form method="post" th:action="${'/orderSotr/filter/result'}">
+        <input type="text" name="surname">
+        <button type="submit">Найти</button>
+        <div th:each="order : ${result}">
+            <h3 th:text="${'Дата заказа: '+order.data}"></h3>
+            <h3 th:text="${'Примечание: '+order.noter}"></h3>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

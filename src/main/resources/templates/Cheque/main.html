@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Чек</title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<h1>Все чеки</h1><br>
+<a th:if="isEmployee" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="/employCheque/add" sec:authorize="isAuthenticated()">Добавить чек</a>
+<div th:each="cheq : ${cheques}">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2" th:text="${'Количество товара: '+cheq.quantity}"/>
+            <p class="text-gray-700 text-base" th:text="${'Время продажи товара: '+cheq.timesell}"></p>
+            <p class="text-gray-700 text-base" th:text="${'Наименование товара: '+cheq.products.titleproducts}"></p>
+            <p class="text-gray-700 text-base" th:text="${'ФИО клиента: '+cheq.client.users.surname+' '+cheq.client.users.name+' '+cheq.client.users.middlename}"></p>
+            <p class="text-gray-700 text-base" th:text="${'ФИО сотрудника: '+cheq.employee.user.surname+' '+cheq.employee.user.name+' '+cheq.employee.user.middlename}"></p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+            <a class="underline text-blue-600" th:href="'/employCheque/edit/'+${cheq.id}"
+               sec:authorize="isAuthenticated()" th:if="isEmployee">Редактировать</a>
+            <a class="underline text-blue-600" th:href="'/employCheque/del/'+${cheq.id}"
+               sec:authorize="isAuthenticated()" th:if="isEmployee">Удалить</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

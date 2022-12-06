@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Добавление должности</title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div align="center">
+    <form th:action = "${'/adminPost/add'}" method="post" th:object="${post}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                th:field="*{titlepost}" style="width: 250px; height: 40px; margin-top: 30px" type="text" name="titlepost" placeholder="Введите название должности">
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('titlepost')}" th:errors="*{titlepost}"></div><br>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+               th:field="*{salary}" style="width: 250px; height: 40px; margin-top: 30px" type="text" name="salary" placeholder="Введите оклад">
+        <div style="width: 250px; height: 40px; margin: 2px" th:if="*{#fields.hasErrors('salary')}" th:errors="*{salary}"></div><br>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Добавить должность</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>РЕГИСТРАЦИЯ</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<div align="center">
+    <div th:if="${#messages}">
+        <p th:text="${message}"></p>
+    </div>
+    <div class="max-w-sm bg-gray-400 rounded overflow-hidden shadow-lg">
+    <h1>РЕГИСТРАЦИЯ</h1>
+    <form th:action="@{/registration}" method="post">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Login</label>
+        <div style="width: 250px; height: 40px; margin: 1px">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   required type="text" name="login"/>
+        </div>
+        <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+        <div style="width: 250px; height: 40px; margin: 1px">
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    required type="password" name="password"/>
+        </div>
+        <div style="width: 250px; height: 40px; margin: 1px">
+            <input type="submit" value="Зарегистрироваться"
+                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"/>
+        </div>
+        <a href="/login">Авторизация</a>
+    </form>
+    </div>
+</div>
+</body>
+</html>
+<style>
+    body {
+        height: 200px;
+        background: linear-gradient(to right, gray 20%, wheat 20%, wheat 80%, darkgray 80%);
+    }
+</style>

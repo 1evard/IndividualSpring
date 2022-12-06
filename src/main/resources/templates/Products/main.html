@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <title>Товары</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<h1>Все товары</h1><br>
+<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+   href="/adminProducts/add" th:if="isEmployee">Добавить товар</a><br><br>
+<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+   href="/adminProducts/filter" th:if="isUser">Поиск товара</a><br><br>
+<a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+   href="/adminProducts/addToCard" th:if="isUser">Добавить товар в корзину</a><br>
+<div th:each="product : ${products}">
+  <div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2" th:text="${'Название товара: '+product.titleproducts}"/>
+      <p class="text-gray-700 text-base" th:text="${'Описание товара: '+product.description}"></p>
+      <p class="text-gray-700 text-base" th:text="${'Марка товара: '+product.stamp.titlestamp}"></p>
+      <p class="text-gray-700 text-base" th:text="${'Марка машины: '+product.stampCar.titlestampcar}"></p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      <a class="underline text-blue-600" th:href="'/adminProducts/edit/'+${product.id}" th:if="isEmployee">Редактировать</a>
+      <a class="underline text-blue-600" th:href="'/adminProducts/show/'+${product.id}" th:if="isEmployee">Посмореть</a>
+      <a class="underline text-blue-600" th:href="'/adminProducts/del/'+${product.id}" th:if="isEmployee">Удалить</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

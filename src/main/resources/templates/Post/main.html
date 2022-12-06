@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Должности</title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div align="center">
+  <h2>Должности</h2>
+  <div th:each="el : ${postest}">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+    <h3 th:text="${'Должность: '+el.getTitlepost()}"></h3>
+    <h4 th:text="${'Оклад: '+el.getSalary()}"></h4>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+    <h5><a class="underline text-blue-600" th:href="'/adminPost/edit/'+${el.id}">Редактировать</a></h5>
+    <h5><a class="underline text-blue-600" th:href="'/adminPost/del/' + ${el.id}">Удалить</a></h5>
+      </div>
+      </div>
+  </div><br>
+  <a href="/adminPost/add" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="font-size: 20px">Добавить должность</a>
+</div>
+
+</body>
+</html>

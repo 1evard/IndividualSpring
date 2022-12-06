@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:value="${products.titleproducts}"></title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2" th:text="${'Название товара: '+products.titleproducts}"/>
+        <p class="text-gray-700 text-base" th:text="${'Описание товара: '+products.description}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Стоимость товара: '+products.cost+' руб.'}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Артикул товара: '+products.articul}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Марка товара: '+products.stamp.titlestamp}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Марка машины: '+products.stampCar.titlestampcar}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Количество товара: '+products.currentBalance.quantity}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Содержание товара: '+products.productContent.name}"></p>
+    </div>
+</div>
+</body>
+</html>

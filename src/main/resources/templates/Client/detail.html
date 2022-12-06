@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:value="${client.users.login}"></title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2" th:text="${'Логин: '+client.users.login}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Фамилия: '+client.users.surname}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Имя: '+client.users.name}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Отчество: '+client.users.middlename}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Дата рождения: '+client.users.birthdate}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Почта: '+client.email}"/>
+        <div class="font-bold text-xl mb-2" th:text="${'Адрес: '+client.address}"/>
+    </div>
+</div>
+</body>
+</html>

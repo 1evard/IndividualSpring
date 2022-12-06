@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск товаров</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+<div class="max-w-sm rounded overflow-hidden shadow-lg" align="center">
+<h2>Фильтрация</h2>
+<form method="get" th:action="${'/adminProducts/filter'}">
+    <label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+               type="text" name="titleproducts" th:value="${titleproducts}">
+    </label>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit">Найти</button>
+    <label>
+        Точный поиск:
+        <input type="checkbox" name="accurate_search" placeholder="Точный поиск" th:checked="${accurate_search}">
+    </label>
+
+    <div class="w-full max-w-xs" th:each="el : ${result}">
+        <div class="font-bold text-xl mb-2" th:text="${'Название товара: '+el.titleproducts}"></div>
+        <p class="text-gray-700 text-base" th:text="${'Описание товара: '+el.description}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Марка товара: '+el.stamp.titlestamp}"></p>
+        <p class="text-gray-700 text-base" th:text="${'Стоимость товара: '+el.cost+' руб.'}"></p>
+    </div>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Добавление типа товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div class="w-full max-w-xs">
+    <form th:action="${'/adminProductType/add'}" method="post" th:object="${productType}"
+          class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Выберите категорию товара</label>
+            <select th:field="*{productCategory}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="author">
+                <option th:each="product : ${productCategory}"
+                        th:value="${product.id}"
+                        th:text="${product.name}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Тип товара</label>
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            <input th:field="*{name}" type="text"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      name="name" placeholder="Введите тип товара">
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">Добавить тип товара
+        </button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<nav th:fragment="header"
+     class="navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+     xmlns:th="http://www.thymeleaf.org">
+  <div class="px-6 w-full flex flex-wrap items-center justify-between">
+    <div class="navbar-collapse collapse grow items-center" id="navbarSupportedContentY">
+      <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
+
+        <li>
+          <h1 style="font-size: 30px; display: inline-block">АВТО</h1><br>
+          <h1 style="color: red; font-style: normal; font-size: 30px; display: inline-block">&nbsp;&nbsp;&nbsp; DRIVE</h1>
+          <h4 style="font-size: 14px; alignment: center; display: inline-block">Магазин автозапчастей</h4>
+        </li>
+
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isAdmin}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminPost" data-mdb-ripple="true" data-mdb-ripple-color="light">Должности</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isAdmin}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminEmployee" data-mdb-ripple="true" data-mdb-ripple-color="light">Сотрудники</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isAdmin}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/admin" data-mdb-ripple="true" data-mdb-ripple-color="light">Пользователи</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminOrderStatus" data-mdb-ripple="true" data-mdb-ripple-color="light">Статусы заказов</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isAdmin}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/userClient" data-mdb-ripple="true" data-mdb-ripple-color="light">Клиенты</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProducts" data-mdb-ripple="true" data-mdb-ripple-color="light">Товары</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isUser}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProducts" data-mdb-ripple="true" data-mdb-ripple-color="light">Товары</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProdС" data-mdb-ripple="true" data-mdb-ripple-color="light">Содержание товаров</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employCurrentBalance" data-mdb-ripple="true" data-mdb-ripple-color="light">Количество товаров</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProductCategory" data-mdb-ripple="true" data-mdb-ripple-color="light">Категории товаров</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProductType" data-mdb-ripple="true" data-mdb-ripple-color="light">Типы товаров</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employeeStamp" data-mdb-ripple="true" data-mdb-ripple-color="light">Марки товаров</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employeeStampCar" data-mdb-ripple="true" data-mdb-ripple-color="light">Марки машин</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employManufactur" data-mdb-ripple="true" data-mdb-ripple-color="light">Поставщики</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employCheque" data-mdb-ripple="true" data-mdb-ripple-color="light">Чеки</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isUser}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/employCheque" data-mdb-ripple="true" data-mdb-ripple-color="light">Чеки</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isEmployee}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/orderSotr" data-mdb-ripple="true" data-mdb-ripple-color="light">Заказы</a>
+        </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+          <li class="nav-item" th:if="${isUser}">
+            <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+               href="/orderSotr" data-mdb-ripple="true" data-mdb-ripple-color="light">Заказы</a>
+          </li>
+        </sec:authorize>
+
+        <sec:authorize access="isAuthenticated()">
+        <li class="nav-item" th:if="${isUser}">
+          <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-600 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
+             href="/adminProducts/main" data-mdb-ripple="true" data-mdb-ripple-color="light">Корзина</a>
+        </li>
+        </sec:authorize>
+
+        <li class="nav-item" sec:authorize="!isAuthenticated()"><br>
+          <form th:action="@{/logout}" method="post">
+            <button type="submit"
+                    class="inline-block px-3 py-2.5 bg-gray-400 text-black font-medium text-xl leading-tight uppercase rounded shadow-md hover:bg-gray-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                    sec:authorize="!isAuthenticated()">Войти
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

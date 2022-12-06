@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <title>Добавление товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div class="w-full max-w-xs">
+    <form th:action="${'/adminProducts/add'}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          th:object="${products}">
+
+        <div class="mb-4">
+            <div style="color: red" th:if="${#fields.hasErrors('titleproducts')}" th:errors="*{titleproducts}"></div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Название товара</label>
+            <input th:field="*{titleproducts}"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   type="text" name="titleproducts" placeholder="Введите название товара">
+        </div>
+
+        <div class="mb-4">
+            <div style="color: red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Описание товара</label>
+            <textarea th:field="*{description}"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   name="description" placeholder="Введите описание товара"></textarea>
+        </div>
+
+        <div class="mb-4">
+            <div style="color: red" th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Стоимость товара</label>
+            <input th:field="*{cost}"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   type="text" name="cost" placeholder="Введите стоимость товара">
+        </div>
+
+        <div class="mb-4">
+            <div style="color: red" th:if="${#fields.hasErrors('articul')}" th:errors="*{articul}"></div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">Артикул товара</label>
+            <input th:field="*{articul}"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   type="text" name="cost" placeholder="Введите артикул">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Выберите марку товара</label>
+            <select th:field="*{stamp}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="author">
+                <option th:each="stamp : ${stamps}"
+                        th:value="${stamp.id}"
+                        th:text="${stamp.titlestamp}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Выберите марку машины</label>
+            <select th:field="*{stampCar}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="author">
+                <option th:each="stampCar : ${stampCars}"
+                        th:value="${stampCar.id}"
+                        th:text="${stampCar.titlestampcar}">
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <label>Количество товара</label>
+            <div style="color: red" th:if="${#fields.hasErrors('currentBalance')}" th:errors="*{currentBalance}"></div>
+            <select th:field="*{currentBalance}" name="currentBalance" style="width: 250px; height: 40px; margin: 2px">
+                <option th:each="currentBalance : ${currentBalances}"
+                        th:if="${(products.currentBalance != null && currentBalance.id == products.currentBalance.id) || currentBalance.products==null}"
+                        th:value="${currentBalance.id}"
+                        th:text="${currentBalance.quantity}" >
+                </option>
+            </select>
+        </div>
+
+        <div>
+            <label>Содержание товара товара</label>
+            <div style="color: red" th:if="${#fields.hasErrors('productContent')}" th:errors="*{productContent}"></div>
+            <select th:field="*{productContent}" name="productContent" style="width: 250px; height: 40px; margin: 2px">
+                <option th:each="productContent : ${productContents}"
+                        th:if="${(products.productContent != null && productContent.id == products.productContent.id) || productContent.products==null}"
+                        th:value="${productContent.id}"
+                        th:text="${productContent.name}" >
+                </option>
+            </select>
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit">Добавить товар
+        </button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Поставщики</title>
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<h1>Все поставщики</h1><br>
+<a href="/employManufactur/add" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+   sec:authorize="isAuthenticated()">Добавить поставщика</a>
+<div th:each="manufact : ${manufacturers}">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2" th:text="${'Производитель: '+manufact.name}"/>
+            <p class="text-gray-700 text-base" th:text="${'Марка производителя: '+manufact.stamp.titlestamp}"></p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+            <a class="underline text-blue-600" th:href="'/employManufactur/edit/'+${manufact.id}"
+               sec:authorize="isAuthenticated()">Редактировать</a>
+            <a class="underline text-blue-600" th:href="'/employManufactur/del/'+${manufact.id}"
+               sec:authorize="isAuthenticated()">Удалить</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

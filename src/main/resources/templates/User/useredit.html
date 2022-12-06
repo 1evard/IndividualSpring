@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование пользователя</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:insert="Blocks/Header">...</div>
+
+<div class="w-full max-w-xs">
+  <form th:action="${'/admin/edit/'+user.id}" th:object="${user}" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Логин</label>
+      <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+      <input th:field="*{login}"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             type="text" name="name" placeholder="Введите логин">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Фамилия</label>
+      <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+      <input th:field="*{surname}"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             type="text" name="name" placeholder="Введите фамилию">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Имя</label>
+      <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+      <input th:field="*{name}"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             type="text" name="name" placeholder="Введите имя">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Отчество</label>
+      <div style="color: red" th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}"></div>
+      <input th:field="*{middlename}"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             type="text" name="middlename" placeholder="Введите отчество">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Дата рождения</label>
+      <div style="color: red" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
+      <input th:field="*{birthdate}"
+             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+             type="date" name="release_date" placeholder="Выберите дату рождения">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Роли</label>
+      <div th:each="role : ${roles}">
+        <input th:name="${'roles[]'}" th:value="${role.name}" th:checked="${user.id!=null && #lists.contains(user.roles, role)}" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               type="checkbox">
+        <label th:text="${role.name}"></label>
+      </div>
+    </div>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit">Сохранить
+    </button>
+  </form>
+</div>
+</body>
+</html>
+
